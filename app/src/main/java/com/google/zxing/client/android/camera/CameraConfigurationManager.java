@@ -184,7 +184,7 @@ final class CameraConfigurationManager {
 
     theCamera.setParameters(parameters);
 
-    theCamera.setDisplayOrientation(cwRotationFromDisplayToCamera);
+    theCamera.setDisplayOrientation(cwRotationFromDisplayToCamera);//使相机预览方向正确显示
 
     Camera.Parameters afterParameters = theCamera.getParameters();
     Camera.Size afterSize = afterParameters.getPreviewSize();
