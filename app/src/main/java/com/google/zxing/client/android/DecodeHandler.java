@@ -50,7 +50,7 @@ final class DecodeHandler extends Handler {
 
   @Override
   public void handleMessage(Message message) {
-    if (message == null || !running) {
+    if (!running) {
       return;
     }
     switch (message.what) {

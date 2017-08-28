@@ -46,11 +46,6 @@ public abstract class SupplementalInfoRetriever extends AsyncTask<Object,Object,
 
   private static final String TAG = "SupplementalInfo";
 
-  private final WeakReference<TextView> textViewRef;
-  private final WeakReference<HistoryManager> historyManagerRef;
-  private final Collection<Spannable> newContents;
-  private final Collection<String[]> newHistories;
-
   public static void maybeInvokeRetrieval(TextView textView,
                                           ParsedResult result,
                                           HistoryManager historyManager,
@@ -82,6 +77,11 @@ public abstract class SupplementalInfoRetriever extends AsyncTask<Object,Object,
       // do nothing
     }
   }
+
+  private final WeakReference<TextView> textViewRef;
+  private final WeakReference<HistoryManager> historyManagerRef;
+  private final Collection<Spannable> newContents;
+  private final Collection<String[]> newHistories;
 
   SupplementalInfoRetriever(TextView textView, HistoryManager historyManager) {
     textViewRef = new WeakReference<>(textView);

@@ -41,7 +41,7 @@ public final class ClipboardInterface {
     if (text != null) {
       try {
         getManager(context).setPrimaryClip(ClipData.newPlainText(null, text));
-      } catch (NullPointerException | IllegalStateException | SecurityException e) {
+      } catch (NullPointerException | IllegalStateException e) {
         // Have seen this in the wild, bizarrely
         Log.w(TAG, "Clipboard bug", e);
       }

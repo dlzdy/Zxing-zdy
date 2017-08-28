@@ -30,6 +30,7 @@ import android.text.style.StyleSpan;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -150,15 +151,15 @@ public final class AddressBookResultHandler extends ResultHandler {
     }
   }
 
-  private static long parseDate(String s) {
+  private static Date parseDate(String s) {
     for (DateFormat currentFormat : DATE_FORMATS) {
       try {
-        return currentFormat.parse(s).getTime();
+        return currentFormat.parse(s);
       } catch (ParseException e) {
         // continue
       }
     }
-    return -1L;
+    return null;
   }
 
   // Overriden so we can hyphenate phone numbers, format birthdays, and bold the name.
@@ -192,9 +193,9 @@ public final class AddressBookResultHandler extends ResultHandler {
 
     String birthday = result.getBirthday();
     if (birthday != null && !birthday.isEmpty()) {
-      long date = parseDate(birthday);
-      if (date >= 0L) {
-        ParsedResult.maybeAppend(DateFormat.getDateInstance(DateFormat.MEDIUM).format(date), contents);
+      Date date = parseDate(birthday);
+      if (date != null) {
+        ParsedResult.maybeAppend(DateFormat.getDateInstance(DateFormat.MEDIUM).format(date.getTime()), contents);
       }
     }
     ParsedResult.maybeAppend(result.getNote(), contents);

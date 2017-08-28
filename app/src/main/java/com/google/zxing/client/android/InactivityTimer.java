@@ -25,8 +25,6 @@ import android.os.AsyncTask;
 import android.os.BatteryManager;
 import android.util.Log;
 
-import java.util.concurrent.RejectedExecutionException;
-
 /**
  * Finishes an activity after a period of inactivity if the device is on battery power.
  */
@@ -51,11 +49,7 @@ final class InactivityTimer {
   synchronized void onActivity() {
     cancel();
     inactivityTask = new InactivityAsyncTask();
-    try {
-      inactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
-    } catch (RejectedExecutionException ree) {
-      Log.w(TAG, "Couldn't schedule inactivity task; ignoring"); 
-    }
+    inactivityTask.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR);
   }
 
   synchronized void onPause() {

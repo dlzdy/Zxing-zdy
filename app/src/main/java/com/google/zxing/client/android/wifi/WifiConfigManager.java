@@ -82,13 +82,10 @@ public final class WifiConfigManager extends AsyncTask<WifiParsedResult,Object,O
     } else {
       String password = theWifiResult.getPassword();
       if (password != null && !password.isEmpty()) {
-        switch (networkType) {
-          case WEP:
-            changeNetworkWEP(wifiManager, theWifiResult);
-            break;
-          case WPA:
-            changeNetworkWPA(wifiManager, theWifiResult);
-            break;
+        if (networkType == NetworkType.WEP) {
+          changeNetworkWEP(wifiManager, theWifiResult);
+        } else if (networkType == NetworkType.WPA) {
+          changeNetworkWPA(wifiManager, theWifiResult);
         }
       }
     }
