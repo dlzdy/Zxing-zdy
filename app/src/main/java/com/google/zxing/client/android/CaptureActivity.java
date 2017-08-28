@@ -157,7 +157,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     // first launch. That led to bugs where the scanning rectangle was the wrong size and partially
     // off screen.
     cameraManager = new CameraManager(getApplication());
-
+    //覆盖在预览图（SurfaceView）上方的一个View,主要作用是增加了部分透明的取景框和扫描动画；我们可以根据需要改变取景框的大小形状，改变扫描动画等。
     viewfinderView = (ViewfinderView) findViewById(R.id.viewfinder_view);
     viewfinderView.setCameraManager(cameraManager);
 
@@ -168,7 +168,7 @@ public final class CaptureActivity extends Activity implements SurfaceHolder.Cal
     lastResult = null;
 
     SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
-
+    //TODO 编译失败
 //    if (prefs.getBoolean(PreferencesActivity.KEY_DISABLE_AUTO_ORIENTATION, true)) {
 //      setRequestedOrientation(getCurrentOrientation());
 //    } else {
